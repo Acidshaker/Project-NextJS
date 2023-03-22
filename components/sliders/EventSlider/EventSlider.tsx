@@ -4,7 +4,7 @@ import 'swiper/css';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { CardEvent } from '../../CardEvent';
 
-export interface Events {
+export default interface Events {
   cover_img: string;
   title: string;
   description: string;

@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { linkCategories } from '..';
+import { useEffect, useState } from 'react';
+import { Categories, linkCategories } from '..';
 import { Layout } from '../../components/layout/Layout';
 import { EventSlider } from '../../components/sliders/EventSlider/EventSlider';
 import { NextPageWithLayout } from '../page';
@@ -32,23 +33,31 @@ const events = [
 export const CategoryPage: NextPageWithLayout = () => {
   const router = useRouter();
   const { category_id } = router.query;
+  const [selectedCategory, setSelectedCategory] = useState<Categories[]>([]);
 
-  const selectedCategory = linkCategories.filter(
-    (category) => category.id === category_id
-  );
+  useEffect(() => {
+    setSelectedCategory(
+      linkCategories.filter((category) => category.id === category_id)
+    );
+  }, [category_id]);
 
   // console.log(selectedCategory);
 
   return (
     <div>
+      <span>
+        <Link href={'/'}>Home/</Link>
+        {category_id}
+      </span>
+
       <h1 className="text-2xl">
         {/* {' '}
         this page is{' '}
         <span className="text-app-red text-6xl">
         </span> */}
-        {selectedCategory[0].name}
+        {selectedCategory[0]?.name}
       </h1>
-      <p>{selectedCategory[0].description}</p>
+      <p>{selectedCategory[0]?.description}</p>
 
       <div>
         <ul>
