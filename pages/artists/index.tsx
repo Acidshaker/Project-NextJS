@@ -1,5 +1,7 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import { Layout } from '../../components/layout/Layout';
+import { NextPageWithLayout } from '../page';
 
 const artists = [
   {
@@ -19,9 +21,15 @@ const artists = [
   },
 ];
 
-export default function Index() {
+const Artists: NextPageWithLayout = () => {
   return (
-    <Layout>
+    <>
+      <Image
+        src={'/artists.png'}
+        width={600}
+        height={200}
+        alt="Imagen decorativa"
+      ></Image>
       <h1>Hola soy la ruta artistas</h1>
       <div>
         {artists.map((artist) => (
@@ -33,6 +41,12 @@ export default function Index() {
           </p>
         ))}
       </div>
-    </Layout>
+    </>
   );
-}
+};
+
+export default Artists;
+
+Artists.getLayout = (page) => {
+  return <Layout>{page}</Layout>;
+};
