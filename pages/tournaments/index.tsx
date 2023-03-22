@@ -1,5 +1,7 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import { Layout } from '../../components/layout/Layout';
+import { NextPageWithLayout } from '../page';
 
 const tournaments = [
   {
@@ -19,9 +21,15 @@ const tournaments = [
   },
 ];
 
-export default function Index() {
+const Tournaments: NextPageWithLayout = () => {
   return (
-    <Layout>
+    <>
+      <Image
+        src={'/tournaments.png'}
+        width={600}
+        height={200}
+        alt="Imagen decorativa"
+      ></Image>
       <h1>Hola soy la ruta de eventos</h1>
       <div>
         {tournaments.map((tournament) => (
@@ -33,6 +41,12 @@ export default function Index() {
           </p>
         ))}
       </div>
-    </Layout>
+    </>
   );
-}
+};
+
+export default Tournaments;
+
+Tournaments.getLayout = (page) => {
+  return <Layout>{page}</Layout>;
+};

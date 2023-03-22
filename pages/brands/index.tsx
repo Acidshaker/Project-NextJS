@@ -1,5 +1,7 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import { Layout } from '../../components/layout/Layout';
+import { NextPageWithLayout } from '../page';
 
 const brands = [
   {
@@ -19,9 +21,15 @@ const brands = [
   },
 ];
 
-export default function Index() {
+const Brands: NextPageWithLayout = () => {
   return (
-    <Layout>
+    <>
+      <Image
+        src={'/brands.png'}
+        width={600}
+        height={200}
+        alt="Imagen decorativa"
+      ></Image>
       <h1>Hola soy la ruta marcas</h1>
       <div>
         {brands.map((brand) => (
@@ -33,6 +41,12 @@ export default function Index() {
           </p>
         ))}
       </div>
-    </Layout>
+    </>
   );
-}
+};
+
+export default Brands;
+
+Brands.getLayout = (page) => {
+  return <Layout>{page}</Layout>;
+};
