@@ -14,6 +14,7 @@ module.exports = {
     },
     extend: {
       colors: {
+        'my-custom-color': '#fffff',
         'app-blue': '#1b4db1',
         'app-yellow': '#f3f243',
         'app-pink': '#ff64bc',

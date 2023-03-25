@@ -8,9 +8,10 @@ export async function middleware(request: NextRequest) {
 
   const jwt = request.cookies.get('token');
   if (!jwt) {
-    return NextResponse.redirect(new URL('/login', request.url));
+    // return NextResponse.redirect(new URL('/login', request.url));
+    return NextResponse.next();
   }
-
+  return NextResponse.next();
   // try {
   //   const { payload } = await jwtVerify(
   //     jwt.value,
